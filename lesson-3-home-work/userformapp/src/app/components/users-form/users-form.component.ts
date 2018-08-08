@@ -18,9 +18,12 @@ export class UsersFormComponent implements OnInit {
   ngOnInit() {
     this.users = [];
   }
-
+  onFocus(name,form){
+    console.log(name,form)
+  }
   onSubmit(form){
-    if(!form.invalid)return;
+    if(form.invalid)return;
+
     const user:UserItem = {
       id: this.users.length,
       name: form.value.name,

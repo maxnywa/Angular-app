@@ -12,6 +12,7 @@
         #name="ngModel"
         [ngClass]="{'is-invalid': name.errors && form.submitted}"
         required
+        (focus)="onFocus(name.errors,form)"
       >
       <div class="invalid-feedback" [hidden]="!name.errors?.required">Name is required</div>
       <div class="invalid-feedback" [hidden]="!name.errors?.minlength">Name must be at least 2 chars</div>
@@ -44,7 +45,7 @@
         [ngClass]="{'is-invalid': age.errors && form.submitted}"
         name="age"
         required
-        pattern="/^(?:1(?:0{1,2}|\d)|[2-5]\d|[6-9]\d?)$/"
+        pattern="^(?:1(?:0{1,2}|\d)|[2-5]\d|[6-9]\d?)$"
       >
       <div class="invalid-feedback" [hidden]="!age.errors?.required">Age is required</div>
       <div class="invalid-feedback" [hidden]="!age.errors?.pattern">Type real age</div>
@@ -60,11 +61,11 @@
         [ngClass]="{'is-invalid': phoneNumber.errors && form.submitted}"
         name="phoneNumber"
         required
-        pattern="[0-3]{10}"
+        pattern="[0-9]{9}"
         placeholder="0501234567"
       >
       <div class="invalid-feedback" [hidden]="!phoneNumber.errors?.required">Phone is required</div>
-      <div class="invalid-feedback" [hidden]="!phoneNumber.errors?.pattern">Wrong phone format </div>
+      <div class="invalid-feedback" [hidden]="!phoneNumber.errors?.pattern">Wrong phone forma </div>
     </div>
     <div class="form-group">
       <label for="comments">Example textarea</label>
@@ -78,11 +79,12 @@
         #comments="ngModel"
         [ngClass]="{'is-invalid': comments.errors && form.submitted}"
         required
-
       ></textarea>
+      <div class="invalid-feedback" [hidden]="!comments.errors?.required">Comments is required</div>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
   </form>
+
   <h3 class="mt-5 mb-3">Users</h3>
   <table class="table">
     <thead>
